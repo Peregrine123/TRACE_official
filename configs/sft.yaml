@@ -1,0 +1,56 @@
+model: 
+  # base llm
+  model_name: Qwen/Qwen2.5-3B-Instruct
+  load_model_path: null  
+
+  lora_config:
+    r: 16
+    lora_alpha: 32
+    target_modules: ["q_proj", "v_proj"]
+    lora_dropout: 0.1
+    bias: "none"
+    task_type: "CAUSAL_LM"
+
+dataset: 
+  name: agent_safety
+  file: ASSE.jsonl
+  mode: sft  
+  sft:
+    val_ratio: 0.2
+
+run: 
+  seed: 42
+  mode: train
+  sft:
+    num_train_epochs: 2
+    per_device_train_batch_size: 1
+    per_device_eval_batch_size: 1
+    gradient_accumulation_steps: 1
+    
+    # optimizer configs
+    optim: adamw_torch
+    lr_scheduler_type: cosine
+    warmup_ratio: 0.1
+    learning_rate: 1e-5
+    
+    # duration
+    logging_strategy: steps
+    logging_steps: 1
+    eval_strategy: epoch
+    eval_steps: 100
+    save_strategy: epoch
+    save_steps: 100
+
+    assistant_only_loss: False   # used only in conversational dataset
+    max_length: 512  # max sequence length
+    remove_unused_columns: False
+    load_best_model_at_end: True
+    bf16: True
+    report_to:  
+      - tensorboard
+  interaction:
+    batch_size: 4
+    do_sample: False
+    temperature: 1.0
+    max_response_length: 8
+    

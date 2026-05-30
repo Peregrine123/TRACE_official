@@ -1,0 +1,92 @@
+############################
+# OS / Editor
+############################
+.DS_Store
+Thumbs.db
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+.idea/
+
+############################
+# Python
+############################
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+.env
+.venv/
+venv/
+ENV/
+figures
+############################
+# Python build / package
+############################
+build/
+dist/
+*.egg-info/
+.eggs/
+
+############################
+# Jupyter
+############################
+.ipynb_checkpoints/
+
+############################
+# Logs / temp
+############################
+*.log
+logs/
+tmp/
+temp/
+cache
+############################
+# Experiments / outputs
+############################
+outputs/
+results/
+runs/
+checkpoints/
+wandb/
+tensorboard/
+tb_logs/
+############################
+# Model weights / data
+############################
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.bin
+*.safetensors
+model_used_for_plot.py
+# data/
+datasets/
+*.arrow
+############################
+# CUDA / compilation
+############################
+*.cu.o
+*.so
+*.dll
+*.dylib
+
+############################
+# Test / coverage
+############################
+.coverage
+htmlcov/
+.pytest_cache/
+
+############################
+# Misc
+############################
+*.swp
+*.swo
+*~
+*.zip
